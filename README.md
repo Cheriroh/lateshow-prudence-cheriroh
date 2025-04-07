@@ -1,41 +1,91 @@
-# Late Show API
+# Late Show Flask API
 
-A Flask API for managing episodes, guests, and appearances on a late show.
+This project is a Flask-based RESTful API that manages episodes, guests, and guest appearances on the Late Show. It supports viewing episodes, managing guests, and recording guest appearances with ratings.
 
-## Setup
 
-1. Clone the repository
-2. Create a virtual environment: `python -m venv env`
-3. Activate the environment:
-   - Windows: `.\env\Scripts\activate`
-   - Mac/Linux: `source env/bin/activate`
-4. Install dependencies: `pip install -r requirements.txt`
-5. Initialize the database:
-   - Run migrations: `flask db init && flask db migrate && flask db upgrade`
-   - Seed the database: `python seed.py`
+## Features
 
-## Running the Application
+- View all Late Show episodes
+- View specific episode by ID
+- View all guests
+- Add a guest appearance with a rating (1–5)
+- Validations and error handling
+- Cascade deletes for related appearances
+- Seed database from CSV file
 
-Start the server: `python app.py`
 
-The API will be available at `http://localhost:5555`
+## Tech Stack
 
-## API Endpoints
+- Python 3.10+
+- Flask
+- Flask-SQLAlchemy
+- Flask-Migrate
+- SQLite (for development)
+- Postman (for API testing)
 
-### GET /episodes
-Returns a list of all episodes
 
-### GET /episodes/:id
-Returns details of a specific episode including appearances
+## Setup Instructions
 
-### GET /guests
-Returns a list of all guests
+### 1. Clone the Repository
 
-### POST /appearances
-Creates a new appearance with rating, episode_id, and guest_id
+```
+git clone https://github.com/Cheriroh/lateshow-prudence-cheriroh
+cd lateshow
+2. Create a Virtual Environment
+3. Install Dependencies
+pip install Flask Flask-SQLAlchemy Flask-Migrate
+```
+4. Set Up the Database
 
-## Models
+flask db init
+flask db migrate -m "Initial migration."
+flask db upgrade
 
-- **Episode**: Represents a show episode with date and number
-- **Guest**: Represents a guest with name and occupation
-- **Appearance**: Represents a guest appearance on an episode with a rating (1-5)
+5. Seed the Database
+Make sure seed.csv is present in the root folder. Then:
+
+python seed.py
+
+Running the App
+
+python app.py
+
+By default, the app runs on: http://127.0.0.1:5000
+
+API Endpoints
+ Episodes
+GET /episodes
+Returns all episodes.
+
+GET /episodes/<id>
+Returns one episode with its guest appearances.
+
+ Guests
+GET /guests
+Returns all guests.
+
+ Appearances
+POST /appearances
+Create a new appearance. JSON Body:
+
+## Contributing
+* Fork the repository
+
+* Create a new branch
+
+* Commit your changes
+
+* Open a pull request
+
+## Author
+Prudece Chepkorir
+Flask | SQLAlchemy | REST APIs
+
+## License
+Copyright (c) 2025 PRUDENCE CHEPKORIR
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
